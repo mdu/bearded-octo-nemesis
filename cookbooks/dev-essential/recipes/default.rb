@@ -34,8 +34,11 @@ package("google-chrome-stable")
 package("mongodb-10gen")
 
 package("libzmq1")
+package("libzmq-dev")
 execute "ldconfig"
 
+package("openssl")
+package("libssl-dev")
 
 # Install n
 git "/tmp/n" do
