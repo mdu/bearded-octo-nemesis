@@ -37,6 +37,7 @@ package("libzmq1")
 package("libzmq-dev")
 execute "ldconfig"
 
+package("build-essential")
 package("openssl")
 package("libssl-dev")
 
