@@ -1,3 +1,4 @@
+package("autoconf")
 package("libncurses5-dev")
 package("libncursesw5-dev")
 

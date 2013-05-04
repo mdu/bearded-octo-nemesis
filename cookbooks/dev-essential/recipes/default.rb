@@ -2,11 +2,7 @@ package("curl")
 package("git")
 package("gitk")
 package("vim")
-if node[:platform_version] == '13.04'
-  puts 'Skipping git-gui'
-else
-  package("git-gui")
-end
+package("git-gui")
 
 # Install Sublime repo
 execute "add-apt-repository -y ppa:webupd8team/sublime-text-2"
@@ -46,13 +42,9 @@ package("sublime-text")
 package("google-chrome-stable")
 package("mongodb-10gen")
 
-if node[:platform_version] == '13.04'
-  puts 'Skipping ZeroMQ'
-else
-  package("libzmq1")
-  package("libzmq-dev")
-  execute "ldconfig"
-end
+package("libzmq1")
+package("libzmq-dev")
+execute "ldconfig"
 
 package("build-essential")
 package("openssl")
@@ -65,18 +57,14 @@ git "/tmp/n" do
   action :sync
 end
 execute "make install" do
-	cwd '/tmp/n'
+  cwd '/tmp/n'
 end
 
 # Install Node.js
 execute "n 0.8.16"
 
 # Install Redis
-if node[:platform_version] == '13.04'
-  puts 'Skipping redis-server'
-else
-  package("redis-server")
-end
+package("redis-server")
 
 # Install CoffeeScript
 execute "npm install coffee-script -g"
