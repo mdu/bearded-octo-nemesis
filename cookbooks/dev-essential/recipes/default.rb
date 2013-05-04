@@ -1,8 +1,12 @@
 package("curl")
 package("git")
 package("gitk")
-package("git-gui")
 package("vim")
+if node[:platform_version] == '13.04'
+  puts 'Skipping git-gui'
+else
+  package("git-gui")
+end
 
 # Install Sublime repo
 execute "add-apt-repository -y ppa:webupd8team/sublime-text-2"
@@ -16,6 +20,15 @@ apt_repository "google-chrome" do
   uri "http://dl.google.com/linux/chrome/deb/"
   components ["stable", "main"]
 end
+if node[:platform_version] == '13.04'
+  puts 'Installing temporary Chrome stable extra dependency for 13.04'
+  # For 13.10
+  remote_file '/tmp/libudev0_175.deb' do
+    source 'https://launchpad.net/ubuntu/+source/udev/175-0ubuntu19/+build/4325790/+files/libudev0_175-0ubuntu19_i386.deb'
+  end
+  execute "sudo dpkg -i /tmp/libudev0_175.deb"
+end
+
 
 # MongoDB
 apt_repository "10gen" do
@@ -33,9 +46,13 @@ package("sublime-text")
 package("google-chrome-stable")
 package("mongodb-10gen")
 
-package("libzmq1")
-package("libzmq-dev")
-execute "ldconfig"
+if node[:platform_version] == '13.04'
+  puts 'Skipping ZeroMQ'
+else
+  package("libzmq1")
+  package("libzmq-dev")
+  execute "ldconfig"
+end
 
 package("build-essential")
 package("openssl")
@@ -55,7 +72,11 @@ end
 execute "n 0.8.16"
 
 # Install Redis
-package("redis-server")
+if node[:platform_version] == '13.04'
+  puts 'Skipping redis-server'
+else
+  package("redis-server")
+end
 
 # Install CoffeeScript
 execute "npm install coffee-script -g"
