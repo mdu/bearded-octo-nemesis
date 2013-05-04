@@ -59,11 +59,6 @@ package("redis-server")
 
 # Install CoffeeScript
 execute "npm install coffee-script -g"
-execute "npm install mocha -g"
 
 # tmux
 package("tmux")
-
-# fish
-#package("libncurses5-dev")
-#package("libncursesw5-dev")

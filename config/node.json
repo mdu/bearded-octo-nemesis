@@ -1,4 +1,3 @@
 {
-	"run_list": ["apt", "dev-essential"]
-//	"run_list": ["apt", "dev-essential::sublime-plugin"]
+	"run_list": ["apt", "dev-essential", "dev-essential::fish", "dev-essential::sublime-plugin"]
 }
