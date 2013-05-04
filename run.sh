@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "Installing Chef..."
 sudo apt-get install -y chef
 
