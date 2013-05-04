@@ -71,3 +71,8 @@ execute "npm install coffee-script -g"
 
 # tmux
 package("tmux")
+
+template "#{ENV['HOME']}/.tmux.conf" do
+  source "tmux.conf.erb"
+  mode 0664
+end
