@@ -35,8 +35,8 @@ apt_repository "10gen" do
   key "7F0CEB10"
 end
 
-# Update repo
-execute "apt-get update"
+# Update repo - this is done automatically after apt_repo
+# execute "apt-get update"
 
 package("sublime-text")
 package("google-chrome-stable")
