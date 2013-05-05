@@ -3,7 +3,13 @@ username = Chef::Config[:username]
 #execute "wget -P #{installdir} 'https://sublime.wbond.net/Package%20Control.sublime-package'"
 
 sublime_dir = "#{ENV['HOME']}/.config/sublime-text-2/Installed Packages/"
-execute "mkdir -p #{sublime_dir}"
+
+directory "#{sublime_dir}" do
+  owner username
+  group username
+  recursive true
+  action :create
+end
 
 remote_file sublime_dir+'/Package Control.sublime-package' do
   source 'https://sublime.wbond.net/Package%20Control.sublime-package'
@@ -11,3 +17,5 @@ remote_file sublime_dir+'/Package Control.sublime-package' do
   owner username
   group username
 end
+
+execute "chown -Rf mason:mason #{ENV['HOME']}/.config"
