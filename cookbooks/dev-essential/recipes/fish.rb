@@ -17,3 +17,12 @@ else
 		cwd '/tmp/fish'
 	end
 end
+
+username = Chef::Config[:username]
+
+directory "#{ENV['HOME']}/.config/fish/functions/" do
+  owner username
+  group username
+  recursive true
+  action :create
+end

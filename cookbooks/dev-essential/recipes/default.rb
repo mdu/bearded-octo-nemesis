@@ -67,7 +67,9 @@ execute "n 0.8.16"
 package("redis-server")
 
 # Install CoffeeScript
-execute "npm install coffee-script -g"
+#execute "npm install coffee-script -g"
+# user "username
+#    action :run
 
 # tmux
 package("tmux")
@@ -76,3 +78,6 @@ template "#{ENV['HOME']}/.tmux.conf" do
   source "tmux.conf.erb"
   mode 0664
 end
+
+# JDK
+package('openjdk-7-jre-headless')
