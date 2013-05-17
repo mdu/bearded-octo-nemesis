@@ -7,13 +7,8 @@ else
 
     . /etc/lsb-release
 
-    if [ "$DISTRIB_RELEASE" == "13.04" ]; then
-        sudo wget -P /tmp/ 'https://opscode-omnibus-packages.s3.amazonaws.com/ubuntu/11.04/i686/chef_11.4.4-1.ubuntu.11.04_i386.deb'
-        sudo dpkg -i /tmp/chef_11.4.4-1.ubuntu.11.04_i386.deb
-    else
-        sudo apt-get install curl
-        curl -L https://www.opscode.com/chef/install.sh | sudo bash
-    fi
+    sudo apt-get install curl
+    curl -L https://www.opscode.com/chef/install.sh | sudo bash
 fi
 
 echo "Installing everything else..."

@@ -1,3 +1,5 @@
+arch = node['kernel']['machine'] =~ /x86_64/ ? "x86_64" : "i386"
+
 package("curl")
 package("git")
 package("gitk")
@@ -19,9 +21,17 @@ end
 if node[:platform_version] == '13.04'
   puts 'Installing temporary Chrome stable extra dependency for 13.04'
   # For 13.10
-  remote_file '/tmp/libudev0_175.deb' do
-    source 'https://launchpad.net/ubuntu/+source/udev/175-0ubuntu19/+build/4325790/+files/libudev0_175-0ubuntu19_i386.deb'
+  if arch == 'i386'
+    put ""
+    remote_file '/tmp/libudev0_175.deb' do
+      source 'https://launchpad.net/ubuntu/+source/udev/175-0ubuntu19/+build/4325790/+files/libudev0_175-0ubuntu19_i386.deb'
+    end
+  else
+    remote_file '/tmp/libudev0_175.deb' do
+      source 'http://mirrors.us.kernel.org/ubuntu//pool/main/u/udev/libudev0_175-0ubuntu13_amd64.deb'
+    end
   end
+
   execute "sudo dpkg -i /tmp/libudev0_175.deb"
 end
 

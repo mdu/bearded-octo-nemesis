@@ -22,3 +22,7 @@ package('skype')
 
 #CCSM
 package('compizconfig-settings-manager')
+
+package('meld')
+
+package('xclip')
