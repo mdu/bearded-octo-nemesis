@@ -26,3 +26,5 @@ package('compizconfig-settings-manager')
 package('meld')
 
 package('xclip')
+
+package('tig')
