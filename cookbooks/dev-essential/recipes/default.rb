@@ -22,7 +22,6 @@ if node[:platform_version] == '13.04'
   puts 'Installing temporary Chrome stable extra dependency for 13.04'
   # For 13.10
   if arch == 'i386'
-    put ""
     remote_file '/tmp/libudev0_175.deb' do
       source 'https://launchpad.net/ubuntu/+source/udev/175-0ubuntu19/+build/4325790/+files/libudev0_175-0ubuntu19_i386.deb'
     end
